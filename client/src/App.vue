@@ -21,4 +21,3 @@ export default {
   margin-top: 60px;
 }
 </style>
-//
