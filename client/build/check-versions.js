@@ -51,4 +51,4 @@ module.exports = function () {
     console.log()
     process.exit(1)
   }
-}
+}//
