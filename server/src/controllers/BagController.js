@@ -1,6 +1,17 @@
 const { Bag } = require('../models');
 
 module.exports = {
+  async create(req, res) {
+    try {
+      const bag = await Bag.create(req.body);
+      res.send(bag.toJSON());
+    } catch (err) {
+      res.status(500).send({
+        error: 'Create bag failed',
+      });
+    }
+  },
+
   async index(req, res) {
     try {
       const bags = await Bag.findAll();
@@ -12,13 +23,18 @@ module.exports = {
     }
   },
 
-  async create(req, res) {
+  async show(req, res) {
     try {
-      const bag = await Bag.create(req.body);
-      res.send(bag.toJSON());
+      const bag = await Bag.findByPk(req.params.bagId);
+      if (!bag) {
+        return res.status(404).send({
+          error: 'Bag not found',
+        });
+      }
+      res.send(bag);
     } catch (err) {
       res.status(500).send({
-        error: 'Create bag failed',
+        error: 'Retrieve bag failed',
       });
     }
   },
@@ -60,22 +76,6 @@ module.exports = {
     } catch (err) {
       res.status(500).send({
         error: 'Delete bag failed',
-      });
-    }
-  },
-
-  async show(req, res) {
-    try {
-      const bag = await Bag.findByPk(req.params.bagId);
-      if (!bag) {
-        return res.status(404).send({
-          error: 'Bag not found',
-        });
-      }
-      res.send(bag);
-    } catch (err) {
-      res.status(500).send({
-        error: 'Retrieve bag failed',
       });
     }
   },

@@ -48,11 +48,11 @@ module.exports = (app) => {
     app.get('/comments', CommentController.index);
 
     // Bag routes
-    app.post('/bag', BagController.create); // เพิ่มเส้นทางการสร้างกระเป๋า
-    app.put('/bag/:bagId', BagController.put); // เพิ่มเส้นทางการแก้ไขกระเป๋า
-    app.delete('/bag/:bagId', BagController.remove); // เพิ่มเส้นทางการลบกระเป๋า
-    app.get('/bag/:bagId', BagController.show); // เพิ่มเส้นทางการดูรายละเอียดกระเป๋า
-    app.get('/bags', BagController.index); // เพิ่มเส้นทางการดูรายการกระเป๋าทั้งหมด
+    app.post('/api/bags', BagController.create);
+    app.get('/api/bags', BagController.index);
+    app.get('/api/bags/:bagId', BagController.show);
+    app.put('/api/bags/:bagId', BagController.put);
+    app.delete('/api/bags/:bagId', BagController.remove);
 
     // Upload file function
     app.post("/upload", function(req, res) {
