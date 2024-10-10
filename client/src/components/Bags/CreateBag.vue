@@ -3,13 +3,13 @@
       <h1>Create Bag</h1>
       <form @submit.prevent="createBag">
         <p>BagID: <input type="text" v-model="bag.bagID"></p>
-        <p>Name: <input type="text" v-model="bag.name"></p>
-        <p>Brand: <input type="text" v-model="bag.brand"></p>
-        <p>Category: <input type="text" v-model="bag.category"></p>
-        <p>Material: <input type="text" v-model="bag.material"></p>
-        <p>Color: <input type="text" v-model="bag.color"></p>
-        <p>Size: <input type="text" v-model="bag.size"></p>
-        <p>Price: <input type="text" v-model="bag.price"></p>
+        <p>Name(ชื่อกระเป๋า) : <input type="text" v-model="bag.name"></p>
+        <p>Brand(ยี่ห้อ): <input type="text" v-model="bag.brand"></p>
+        <p>Category(หมวดหมู่): <input type="text" v-model="bag.category"></p>
+        <p>Material(วัสดุ) : <input type="text" v-model="bag.material"></p>
+        <p>Color(สี): <input type="text" v-model="bag.color"></p>
+        <p>Size(ขนาด): <input type="text" v-model="bag.size"></p>
+        <p>Price(ราคา): <input type="text" v-model="bag.price"></p>
   
         <transition name="fade">
           <div class="thumbnail-pic" v-if="bag.thumbnail !== 'null'">

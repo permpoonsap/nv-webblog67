@@ -1,22 +1,24 @@
-import axios from 'axios';
+import Api from '@/services/Api';
 
-
-const BASE_URL = 'http://localhost:8081/api/bags';
+const BASE_URL = 'http://localhost:8081/api/bags';  // Correctly defined API URL
 
 export default {
+  index() {
+    return Api().get(`${BASE_URL}`);  // ใช้ BASE_URL เพื่อให้เรียกไปยังเส้นทางที่ถูกต้อง
+  },
   post(bagData) {
-    return axios.post(`${BASE_URL}`, bagData);
+    return Api().post(`${BASE_URL}`, bagData);  // Sends a POST request to create a new bag
   },
   getAll() {
-    return axios.get(`${BASE_URL}`);
+    return Api().get(`${BASE_URL}`);  // Sends a GET request to retrieve all bags
   },
   getById(bagID) {
-    return axios.get(`${BASE_URL}/${bagID}`);
+    return Api().get(`${BASE_URL}/${bagID}`);  // Sends a GET request to retrieve a bag by its ID
   },
   update(bagID, bagData) {
-    return axios.put(`${BASE_URL}/${bagID}`, bagData);
+    return Api().put(`${BASE_URL}/${bagID}`, bagData);  // Sends a PUT request to update a bag by its ID
   },
   delete(bagID) {
-    return axios.delete(`${BASE_URL}/${bagID}`);
+    return Api().delete(`${BASE_URL}/${bagID}`);  // Sends a DELETE request to remove a bag by its ID
   }
 };

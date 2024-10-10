@@ -2,19 +2,44 @@ module.exports = (sequelize, DataTypes) => {
     const Bag = sequelize.define('Bag', {
         bagID: {
             type: DataTypes.STRING,
-            allowNull: false,
-            primaryKey: true
+            unique: true, 
+            allowNull: false, 
         },
-        name: DataTypes.STRING,
-        brand: DataTypes.STRING,
-        category: DataTypes.STRING,
-        material: DataTypes.STRING,
-        color: DataTypes.STRING,
-        size: DataTypes.STRING,
-        price: DataTypes.DECIMAL(10, 2),
-        thumbnail: DataTypes.STRING,
-        pictures: DataTypes.TEXT
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false, 
+        },
+        brand: {
+            type: DataTypes.STRING,
+            allowNull: false, 
+        },
+        category: {
+            type: DataTypes.TEXT,
+            allowNull: true, 
+        },
+        material: {
+            type: DataTypes.STRING,
+            allowNull: true, 
+        },
+        color: {
+            type: DataTypes.STRING,
+            allowNull: true, 
+        },
+        size: {
+            type: DataTypes.STRING,
+            allowNull: true, 
+        },
+        price: {
+            type: DataTypes.DECIMAL(10, 2), 
+            allowNull: false, 
+        },
+        pictures: {
+            type: DataTypes.STRING, 
+            allowNull: false, 
+        },
+    }, {
+        timestamps: true, 
     });
 
     return Bag;
-};
+}

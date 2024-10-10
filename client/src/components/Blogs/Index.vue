@@ -10,6 +10,7 @@
           <p>content: {{ blog.content }}</p>
           <p>category: {{ blog.category }}</p>
           <p>status: {{ blog.status }}</p>
+           
           <p>
           <button v-on:click="navigateTo('/blog/'+ blog.id)">ดู blog</button>
           <button v-on:click="navigateTo('/blog/edit/'+ blog.id)">แก้ไข blog</button>

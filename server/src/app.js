@@ -12,6 +12,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use('/assets', express.static('public'));
+app.use('/assets', express.static('public/assets'));
+
 
 // import routes
 require('./userPassport')

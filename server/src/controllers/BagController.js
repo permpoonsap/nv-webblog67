@@ -4,10 +4,10 @@ module.exports = {
   async create(req, res) {
     try {
       const bag = await Bag.create(req.body);
-      res.send(bag.toJSON());
+      res.status(201).send(bag.toJSON()); // Return the created bag with 201 status
     } catch (err) {
       res.status(500).send({
-        error: 'Create bag failed',
+        error: 'Create bag failed. ' + err.message, // Provide specific error message
       });
     }
   },
@@ -18,7 +18,7 @@ module.exports = {
       res.send(bags);
     } catch (err) {
       res.status(500).send({
-        error: 'The bags information was incorrect',
+        error: 'Failed to retrieve bags. ' + err.message,
       });
     }
   },
@@ -34,48 +34,48 @@ module.exports = {
       res.send(bag);
     } catch (err) {
       res.status(500).send({
-        error: 'Retrieve bag failed',
+        error: 'Retrieve bag failed. ' + err.message,
       });
     }
   },
 
   async put(req, res) {
     try {
-      const updated = await Bag.update(req.body, {
+      const [updated] = await Bag.update(req.body, {
         where: {
           id: req.params.bagId,
         },
       });
-      if (updated[0] === 0) {
+      if (updated === 0) {
         return res.status(404).send({
           error: 'Bag not found',
         });
       }
-      res.send(req.body);
+      const updatedBag = await Bag.findByPk(req.params.bagId); // Retrieve the updated bag
+      res.send(updatedBag);
     } catch (err) {
       res.status(500).send({
-        error: 'Update bag failed',
+        error: 'Update bag failed. ' + err.message,
       });
     }
   },
 
   async remove(req, res) {
     try {
-      const bag = await Bag.findOne({
+      const deleted = await Bag.destroy({
         where: {
           id: req.params.bagId,
         },
       });
-      if (!bag) {
+      if (!deleted) {
         return res.status(404).send({
           error: 'Bag not found',
         });
       }
-      await bag.destroy();
-      res.send(bag);
+      res.send({ message: 'Bag deleted successfully' });
     } catch (err) {
       res.status(500).send({
-        error: 'Delete bag failed',
+        error: 'Delete bag failed. ' + err.message,
       });
     }
   },
