@@ -70,6 +70,14 @@ export default {
     navigateTo(route) {
       this.$router.push(route);
     }
+  },
+  methods: {
+    goBack() {
+      this.$router.go(-1); // ย้อนกลับไปยังหน้าที่แล้ว
+    },
+    navigateTo(route) {
+      this.$router.push(route);
+    }
   }
 };
 </script>
@@ -145,5 +153,21 @@ button {
   border-radius: 5px;
   background-color: #fff;
 }
+.back-button {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.back-button:hover {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+
 
 </style>

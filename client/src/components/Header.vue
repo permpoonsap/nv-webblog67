@@ -4,9 +4,7 @@
       <ul class="nav">
         <li><router-link :to="{ name: 'inventory' }">Inventory</router-link></li>
         <li><router-link :to="{ name: 'bags' }">Bag</router-link></li>
-
         <li><router-link :to="{ name: 'users' }">Users</router-link></li>
-        <li><router-link :to="{ name: 'comments' }">Comments</router-link></li>
         <li><router-link :to="{ name: 'login' }">Login</router-link></li>
         <li class="nav-item-right"><a v-on:click.prevent="logout" href="#">Logout</a></li>
       </ul>
@@ -18,7 +16,6 @@
 export default {
   methods: {
     logout() {
-      // แสดง popup ยืนยันการออกระบบ
       const confirmation = confirm("คุณต้องการออกจากระบบหรือไม่?");
       if (confirmation) {
         this.$store.dispatch('setToken', null);

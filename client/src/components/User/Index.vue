@@ -1,10 +1,7 @@
 <template>
   <div class="user-management">
     <h1 class="title">Get All Users</h1>
-    <div class="actions">
-      <button class="action-button create-button" @click="navigateTo('/user/create')">สร้างผู้ใช้</button>
-      <button class="action-button logout-button" @click="logout">Logout</button>
-    </div>
+    
     <hr class="divider" />
 
     <div v-if="users.length" class="user-list">

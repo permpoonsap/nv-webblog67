@@ -1,6 +1,6 @@
 <template>
   <div class="bag-management">
-    <h2 class="title">Get All Bags</h2>
+    <h2 class="title">Bags Management</h2>
     <div class="actions">
       <button class="action-button create-button" @click="navigateTo('/bag/create')">สร้าง Bag</button>
     </div>

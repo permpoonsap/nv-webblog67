@@ -3,12 +3,12 @@
     <h1 class="title">User Login</h1>
     <form class="login-form" v-on:submit.prevent="onLogin">
       <div class="input-group">
-        <label for="email">Username</label>
+        <label for="email">Gmail</label>
         <input 
           type="text" 
           id="email" 
           v-model="email" 
-          placeholder="Enter your username"
+          placeholder="Enter your Gmail"
         />
       </div>
       <div class="input-group">
