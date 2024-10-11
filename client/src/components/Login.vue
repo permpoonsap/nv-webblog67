@@ -23,6 +23,10 @@
       </div>
       <button type="submit" class="login-button">Login</button>
       <div class="error" v-if="error">{{ error }}</div>
+      <!-- New Create User Link -->
+      <div class="create-user-link">
+        <router-link to="/user/create">Create a new account</router-link>
+      </div>
     </form>
   </div>
 </template>
@@ -50,14 +54,14 @@ export default {
         this.$store.dispatch('setUser', response.data.user)
 
         this.$router.push({
-          name: 'users'
+          name: 'bags'
         })
 
       } catch (error) {
         console.log(error)
         this.error = error.response.data.error
-        this.email =''
-        this.password =''
+        this.email = ''
+        this.password = ''
       }
     }
   }
@@ -128,5 +132,21 @@ export default {
   margin-top: 10px;
   color: #d9534f;
   font-weight: 500;
+}
+
+/* New Create User Link */
+.create-user-link {
+  margin-top: 15px;
+}
+
+.create-user-link a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.create-user-link a:hover {
+  color: #0056b3;
 }
 </style>

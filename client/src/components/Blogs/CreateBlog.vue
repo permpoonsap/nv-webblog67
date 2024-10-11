@@ -6,10 +6,12 @@
         title:
         <input type="text" v-model="blog.title" />
       </p>
+
       <transition name="fade">
         <div class="thumbnail-pic" v-if="blog.thumbnail != 'null'">
           <img :src="BASE_URL + blog.thumbnail" alt="thumbnail" />
         </div>
+
       </transition>
       <form enctype="multipart/form-data" novalidate>
         <div class="dropbox">
@@ -52,6 +54,7 @@
         <div class="clearfix"></div>
       </div>
       <p>
+        
         <strong>content:</strong>
       </p>
       <vue-ckeditor
@@ -112,24 +115,24 @@ export default {
       },
     };
   },
-  methods: {
-    async delFile(material) {
-      let result = confirm("Want to delete?");
-      if (result) {
-        let dataJSON = {
-          filename: material.name,
-        };
+   methods: {
+     async delFile(material) {
+       let result = confirm("Want to delete?");
+       if (result) {
+         let dataJSON = {
+           filename: material.name,
+         };
 
-        await UploadService.delete(dataJSON);
-        for (var i = 0; i < this.pictures.length; i++) {
-          if (this.pictures[i].id === material.id) {
+         await UploadService.delete(dataJSON);
+         for (var i = 0; i < this.pictures.length; i++) {
+           if (this.pictures[i].id === material.id) {
             this.pictures.splice(i, 1);
-            this.materialIndex--;
-            break;
-          }
-        }
-      }
-    },
+             this.materialIndex--;
+             break;
+           }
+         }
+       }
+     },
     async createBlog() {
       this.blog.pictures = JSON.stringify(this.pictures);
       console.log("JSON.stringify: ", this.blog);

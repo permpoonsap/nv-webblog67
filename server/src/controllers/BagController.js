@@ -1,5 +1,7 @@
 const { Bag } = require('../models');
 
+
+
 module.exports = {
   async create(req, res) {
     try {
@@ -41,24 +43,26 @@ module.exports = {
 
   async put(req, res) {
     try {
-      const [updated] = await Bag.update(req.body, {
-        where: {
-          id: req.params.bagId,
-        },
+      console.log('Request data:', req.body);  // Log to check incoming data
+      const bagID = req.params.bagId;
+      const bagData = req.body;
+      console.log("Bag ID:", bagID);
+      console.log("Bag data:", bagData);
+  
+      const updatedBag = await Bag.update(bagData, {
+        where: { bagID: bagID }
       });
-      if (updated === 0) {
-        return res.status(404).send({
-          error: 'Bag not found',
-        });
+  
+      if (updatedBag[0] === 0) {
+        return res.status(404).send({ error: 'Bag not found' });
       }
-      const updatedBag = await Bag.findByPk(req.params.bagId); // Retrieve the updated bag
-      res.send(updatedBag);
+      res.send({ message: 'Bag updated successfully' });
     } catch (err) {
-      res.status(500).send({
-        error: 'Update bag failed. ' + err.message,
-      });
+      res.status(500).send({ error: 'An error occurred while updating the bag' });
     }
-  },
+  }
+
+,
 
   async remove(req, res) {
     try {
@@ -79,4 +83,14 @@ module.exports = {
       });
     }
   },
+  async created() {
+    try {
+      const response = await BagsService.index();
+      this.bags = response.data;
+      console.log(this.bags); // เช็คข้อมูลที่ได้จาก API
+    } catch (error) {
+      console.error("Error fetching bags:", error);
+    }
+  },
+  
 };

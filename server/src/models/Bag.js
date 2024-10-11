@@ -1,5 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
     const Bag = sequelize.define('Bag', {
+        id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+        },
         bagID: {
             type: DataTypes.STRING,
             unique: true, 

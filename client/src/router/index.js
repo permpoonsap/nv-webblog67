@@ -15,6 +15,9 @@ import BlogEdit from '@/components/Blogs/EditBlog'
 
 import BagIndex from '@/components/Bags/index'
 import BagCreate from '@/components/Bags/CreateBag'
+import BagEdit from '@/components/Bags/EditBag'
+import BagShow from '@/components/Bags/ShowBag'
+import BagInventory from '@/components/Bags/InventoryBag'
 
 
 import Upload from '@/components/Util/Upload'
@@ -24,6 +27,11 @@ Vue.use(Router)
 export default new Router({
   mode: 'history', // Added this line as requested
   routes: [
+    {
+      path: '/bags',
+      name: 'bags',
+      component: BagIndex
+    },
     {
       path: '/users',
       name: 'users',
@@ -89,5 +97,26 @@ export default new Router({
       name: 'bag-create',  
       component: BagCreate
     },
+    {
+      path: '/bag/edit/:bagId',
+      name: 'bag-edit',  
+      component: BagEdit
+    },
+    {
+      path: '/bag/:bagId',  
+      name: 'bag',
+      component: BagShow
+    },
+    {
+      path: '/',   //เริ่มระบบ
+      name: 'login',
+      component: Login,
+    },
+     {
+      path: '/bag/:bagId',  
+      name: 'inventory',
+      component: BagInventory
+    },
+    
   ]
 })

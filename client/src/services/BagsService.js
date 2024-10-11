@@ -1,24 +1,30 @@
 import Api from '@/services/Api';
 
-const BASE_URL = 'http://localhost:8081/api/bags';  // Correctly defined API URL
+const BASE_URL = 'http://localhost:8081/api/bags';  
 
 export default {
   index() {
-    return Api().get(`${BASE_URL}`);  // ใช้ BASE_URL เพื่อให้เรียกไปยังเส้นทางที่ถูกต้อง
+    return Api().get(`${BASE_URL}`);  
+  },
+  show(bagId) {
+    return Api().get(`${BASE_URL}/${bagId}`);
   },
   post(bagData) {
-    return Api().post(`${BASE_URL}`, bagData);  // Sends a POST request to create a new bag
+    return Api().post(`${BASE_URL}`, bagData);  
+  },
+  put(bagID, bagData) {  // ensure bagID is used as parameter
+    return Api().put(`${BASE_URL}/${bagID}`, bagData);
   },
   getAll() {
-    return Api().get(`${BASE_URL}`);  // Sends a GET request to retrieve all bags
+    return Api().get(`${BASE_URL}`);  
   },
   getById(bagID) {
-    return Api().get(`${BASE_URL}/${bagID}`);  // Sends a GET request to retrieve a bag by its ID
+    return Api().get(`${BASE_URL}/${bagID}`);  
   },
-  update(bagID, bagData) {
-    return Api().put(`${BASE_URL}/${bagID}`, bagData);  // Sends a PUT request to update a bag by its ID
+  update(bagID, formData) {
+    return Api().put(`${BASE_URL}/${bagID}`, formData);
   },
   delete(bagID) {
-    return Api().delete(`${BASE_URL}/${bagID}`);  // Sends a DELETE request to remove a bag by its ID
+    return Api().delete(`${BASE_URL}/${bagID}`);  
   }
 };
